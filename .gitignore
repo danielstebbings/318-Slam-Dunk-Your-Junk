@@ -1,0 +1,27 @@
+﻿# For PCBs designed using KiCad: https://www.kicad.org/
+# Format documentation: https://kicad.org/help/file-formats/
+
+# Temporary files
+ECAD/PCB_Project/**/*.000
+ECAD/PCB_Project/**/*.bak
+ECAD/PCB_Project/**/*.bck
+ECAD/PCB_Project/**/*.kicad_pcb-bak
+ECAD/PCB_Project/**/*.kicad_sch-bak
+ECAD/PCB_Project/**/*-backups
+ECAD/PCB_Project/**/*.kicad_prl
+ECAD/PCB_Project/**/*.sch-bak
+ECAD/PCB_Project/**/*~
+ECAD/PCB_Project/**/_autosave-*
+ECAD/PCB_Project/**/*.tmp
+ECAD/PCB_Project/**/*-save.pro
+ECAD/PCB_Project/**/*-save.kicad_pcb
+ECAD/PCB_Project/**/fp-info-cache
+
+# Netlist files (exported from Eeschema)
+ECAD/PCB_Project/**/*.net
+
+# Autorouter files (exported from Pcbnew)
+ECAD/PCB_Project/**/*.dsn
+ECAD/PCB_Project/**/*.ses
+
+# END KiCAD specific files

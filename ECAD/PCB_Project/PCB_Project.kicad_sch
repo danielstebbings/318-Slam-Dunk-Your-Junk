@@ -23,7 +23,7 @@
   )
   (wire (pts (xy 123.19 43.18) (xy 142.24 43.18))
     (stroke (width 0) (type default))
-    (uuid ee76b08f-8b55-473c-b25f-ba5917159d12)
+    (uuid b3519ac7-52fb-4d46-aef4-ed25bd5290d9)
   )
   (bus (pts (xy 123.19 50.8) (xy 142.24 50.8))
     (stroke (width 0) (type default))
@@ -56,9 +56,9 @@
       (effects (font (size 1.27 1.27)) (justify right))
       (uuid 6ff41656-0b41-48b2-9dec-d5f98d45dd4a)
     )
-    (pin "Inductive_Out" input (at 123.19 43.18 0)
+    (pin "Ind_3v3" input (at 123.19 43.18 0)
       (effects (font (size 1.27 1.27)) (justify right))
-      (uuid ae8f8061-6520-4164-9885-d755dad006a4)
+      (uuid 16d8cd30-11fb-4503-b95d-28e62cb1ef1b)
     )
     (instances
       (project "PCB_Project"
@@ -98,10 +98,6 @@
     (property "Sheetfile" "Sensors.kicad_sch" (at 142.24 69.1646 0)
       (effects (font (size 1.27 1.27)) (justify left top))
     )
-    (pin "Inductive_Out" output (at 142.24 43.18 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 5949310d-913e-46e1-acb2-7f849cedcf6e)
-    )
     (pin "Ultrasonic{Trigg,Echo}" bidirectional (at 142.24 45.72 180)
       (effects (font (size 1.27 1.27)) (justify left))
       (uuid df49e6ae-ace1-4e5d-88ef-d05d5150d619)
@@ -113,6 +109,10 @@
     (pin "Driver{MS1,MS2,STEP,DIR}" input (at 142.24 50.8 180)
       (effects (font (size 1.27 1.27)) (justify left))
       (uuid 4c6a2d72-bffd-4188-b1ce-50eb2fafab0c)
+    )
+    (pin "Ind_3v3" input (at 142.24 43.18 180)
+      (effects (font (size 1.27 1.27)) (justify left))
+      (uuid e3041e5c-c768-40e6-b68e-96b3fc97ae06)
     )
     (instances
       (project "PCB_Project"

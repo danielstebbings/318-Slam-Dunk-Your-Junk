@@ -1,0 +1,45 @@
+(ExpressProject "Inductive_Transistor"
+  (ProjectVersion "19981106")
+  (SoftwareVersion "17.4-2023 S009-[02/21/24]")
+  (ProjectType "Analog or A/D Mixed Mode")
+  (Folder "Design Resources"
+    (Folder "Library")
+    (Allegro Netlist Directory "allegro")
+    (DOCKED "TRUE")
+    (DOCKING_POSITION "59420")
+    (NoModify)
+    (File ".\inductive_transistor.dsn"
+      (Type "Schematic Design"))
+    (BuildFileAddedOrDeleted "x")
+    (CompileFileAddedOrDeleted "x"))
+  (Folder "Layout")
+  (Folder "Outputs")
+  (Folder "PSpice Resources"
+    (Folder "Simulation Profiles")
+    (Folder "Model Libraries")
+    (Folder "Stimulus Files")
+    (Folder "Include Files"))
+  (DefaultLibraryBrowseDirectory "library\PSpice")
+  (Folder "Logs")
+  (PartMRUSelector)
+  (GlobalState
+    (FileView
+      (Path "Design Resources")
+      (Select "Design Resources"))
+    (HierarchyView)
+    (Doc
+      (Type "COrCapturePMDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -1 -1 0 200 0 790"))
+      (Tab 0))
+    (Doc
+      (Type "COrSchematicDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -1 -1 5 1268 24 808")
+        (Scroll "-121 -9")
+        (Zoom "102")
+        (Occurrence "/"))
+      (Path
+         "C:\USERS\DANIEL\DOCUMENTS\GITHUB\318-SLAM-DUNK-YOUR-JUNK\ELECTRICAL SIMS\INDUCTIVE_TRANSISTOR.DSN")
+      (Schematic "SCHEMATIC1")
+      (Page "PAGE1"))))

@@ -1,0 +1,133 @@
+
+**** 02/24/24 13:30:14 ******* PSpice 17.4.0 (Nov 2018) ******* ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-Step"  [ c:\users\daniel\documents\github\318-slam-dunk-your-junk\electrical sims\inductive_transistor-PSpic
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "Step.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+* From [PSPICE NETLIST] section of C:\cds_spb_home\cdssetup\OrCAD_PSpiceTIPSpice_Install\17.4.0\PSpice.ini file:
+.lib "nom_pspti.lib" 
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 1s 0 
+.OPTIONS ADVCONV
+.OPTIONS FILEMODELSEARCH
+.PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
+.INC "..\SCHEMATIC1.net" 
+
+
+
+**** INCLUDING SCHEMATIC1.net ****
+* source INDUCTIVE_TRANSISTOR
+Q_Q1         N00217 N00240 N00213 QbreakN 
+V_V1         N00244 0  
++PULSE 10V 0V 100ms 1ms 1ms 250ms 1s
+V_V2         N00233 0 3.3Vdc
+R_R1         N00244 N00240  100k TC=0,0 
+R_R2         N00217 N00233  10k TC=0,0 
+R_R3         0 N00213  10k TC=0,0 
+
+**** RESUMING Step.cir ****
+.END
+
+**** 02/24/24 13:30:14 ******* PSpice 17.4.0 (Nov 2018) ******* ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-Step"  [ c:\users\daniel\documents\github\318-slam-dunk-your-junk\electrical sims\inductive_transistor-PSpic
+
+
+ ****     BJT MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               QbreakN         
+               NPN             
+       LEVEL    1            
+          IS  100.000000E-18 
+          BF  100            
+          NF    1            
+          BR    1            
+          NR    1            
+         ISS    0            
+          RE    0            
+          RC    0            
+         CJE    0            
+         VJE     .75         
+         CJC    0            
+         VJC     .75         
+         MJC     .33         
+        XCJC    1            
+         CJS    0            
+         VJS     .75         
+          KF    0            
+          AF    1            
+          CN    2.42         
+           D     .87         
+
+
+**** 02/24/24 13:30:14 ******* PSpice 17.4.0 (Nov 2018) ******* ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-Step"  [ c:\users\daniel\documents\github\318-slam-dunk-your-junk\electrical sims\inductive_transistor-PSpic
+
+
+ ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+(N00213)    1.9959 (N00217)    2.0305 (N00233)    3.3000 (N00240)    2.7359     
+
+(N00244)   10.0000 
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V1        -7.264E-05
+    V_V2        -1.269E-04
+
+    TOTAL POWER DISSIPATION   1.15E-03  WATTS
+
+
+
+          JOB CONCLUDED
+
+**** 02/24/24 13:30:14 ******* PSpice 17.4.0 (Nov 2018) ******* ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-Step"  [ c:\users\daniel\documents\github\318-slam-dunk-your-junk\electrical sims\inductive_transistor-PSpic
+
+
+ ****     JOB STATISTICS SUMMARY
+
+
+******************************************************************************
+
+
+
+  License check-out time            =        3.52
+  Total job time (using Solver 1)   =         .70
+

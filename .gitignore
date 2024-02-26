@@ -25,3 +25,5 @@ ECAD/PCB_Project/**/*.dsn
 ECAD/PCB_Project/**/*.ses
 
 # END KiCAD specific files
+Code/Motor Driver/.jxbrowser.userdata
+Code/Motor Driver/RemoteSystemsTempFiles

@@ -83,13 +83,13 @@ void main (void)
 
     //Generate PWM - Timer runs in Up-Down mode
 	Timer_A_outputPWMParam param = {0};
-    param.clockSource = TIMER_A_CLOCKSOURCE_SMCLK;
+    param.clockSource = ds;
     param.clockSourceDivider = TIMER_A_CLOCKSOURCE_DIVIDER_1;
     param.timerPeriod = TIMER_A_PERIOD;
     param.compareRegister = TIMER_A_CAPTURECOMPARE_REGISTER_1;
     param.compareOutputMode = TIMER_A_OUTPUTMODE_RESET_SET;
     param.dutyCycle = DUTY_CYCLE;
-    Timer_A_outputPWM(TIMER_A1_BASE, &param);
+    Timer_A_outputPWM(TIMER_A1_BASE, param);
 
     //Enter LPM0
     __bis_SR_register(LPM0_bits);

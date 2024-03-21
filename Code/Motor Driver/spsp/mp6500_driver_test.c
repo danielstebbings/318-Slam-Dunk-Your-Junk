@@ -18,9 +18,10 @@
 
 #include <msp430.h>
 #include "driverlib/driverlib.h"
+
 #include "mp6500_driver.h"
 
-
+#define DEBUG
 
 
     //source:
@@ -28,8 +29,8 @@
     // Timer A0 interrupt service routine
 
     #pragma vector = TIMER0_A0_VECTOR
-    __interrupt void Timer_A (void)
-    {
+    __interrupt void Timer_A (void) {
+
         Timer_A_stop(TIMER_A1_BASE); // Stop PWM
         Timer_A_stop(TIMER_A0_BASE); // Stop step counter
         P1OUT ^= BIT0; //xor - toggle LED
@@ -79,7 +80,7 @@ void main(void) {
 
 
 
-    GPIO_setAsPeripheralModuleFunctionOutputPin(
+    GPIO_setAsPeripheralModuleFunctionOutputPin( //Primary function for 4.0 is TIMEA1.1 out
             GPIO_PORT_P4,
             GPIO_PIN0,
             GPIO_PRIMARY_MODULE_FUNCTION

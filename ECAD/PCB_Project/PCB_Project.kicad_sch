@@ -1,139 +1,307 @@
-(kicad_sch (version 20230121) (generator eeschema)
-
-  (uuid 96782006-a72a-4cbb-9ab4-56557ee1053d)
-
-  (paper "A5")
-
-  (lib_symbols
-  )
-
-
-  (bus (pts (xy 69.85 57.15) (xy 82.55 57.15))
-    (stroke (width 0) (type default))
-    (uuid 411728f1-7358-4f4a-aefc-9c1d3d9022cd)
-  )
-  (bus (pts (xy 123.19 45.72) (xy 142.24 45.72))
-    (stroke (width 0) (type default))
-    (uuid 61c25c5f-ec78-42da-b5f6-0d412a4358af)
-  )
-
-  (wire (pts (xy 123.19 48.26) (xy 142.24 48.26))
-    (stroke (width 0) (type default))
-    (uuid aca28f96-c084-40f7-9642-1936af4c01a6)
-  )
-  (wire (pts (xy 123.19 43.18) (xy 142.24 43.18))
-    (stroke (width 0) (type default))
-    (uuid b3519ac7-52fb-4d46-aef4-ed25bd5290d9)
-  )
-  (wire (pts (xy 123.19 40.64) (xy 142.24 40.64))
-    (stroke (width 0) (type default))
-    (uuid e1b6bc3b-a27d-4674-b58d-b0a5c7a5753d)
-  )
-  (bus (pts (xy 123.19 50.8) (xy 142.24 50.8))
-    (stroke (width 0) (type default))
-    (uuid fd22d354-50d2-4234-9e76-1290bae90b5f)
-  )
-
-  (sheet (at 82.55 31.75) (size 40.64 36.83) (fields_autoplaced)
-    (stroke (width 0.1524) (type solid))
-    (fill (color 0 0 0 0.0000))
-    (uuid 0419be2b-5ee6-4a8c-8789-c753ffca51aa)
-    (property "Sheetname" "MCU" (at 82.55 31.0384 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheetfile" "MCU.kicad_sch" (at 82.55 69.1646 0)
-      (effects (font (size 1.27 1.27)) (justify left top))
-    )
-    (pin "DISPLAY{NCS,SDI,SCL,NRST,A0}" bidirectional (at 82.55 57.15 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid babe5f7e-1d44-4fa1-b7c0-643ad3245ef8)
-    )
-    (pin "Ultrasonic{Trigg,Echo}" bidirectional (at 123.19 45.72 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 68709c61-0936-4d48-b152-a94793d51232)
-    )
-    (pin "Driver{MS1,MS2,STEP,DIR}" output (at 123.19 50.8 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid fc4192a0-23d7-4f2b-9aed-b3b5287bfe96)
-    )
-    (pin "LDR" input (at 123.19 48.26 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 6ff41656-0b41-48b2-9dec-d5f98d45dd4a)
-    )
-    (pin "SG90_PWM" output (at 123.19 40.64 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 4d5eb3dc-519a-4662-8f16-2c4252c2526b)
-    )
-    (pin "Ind_3v3" input (at 123.19 43.18 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 262ca5ae-8aa3-4e11-b89d-772d9460e88f)
-    )
-    (instances
-      (project "PCB_Project"
-        (path "/96782006-a72a-4cbb-9ab4-56557ee1053d" (page "4"))
-      )
-    )
-  )
-
-  (sheet (at 16.51 31.75) (size 53.34 36.83) (fields_autoplaced)
-    (stroke (width 0.1524) (type solid))
-    (fill (color 0 0 0 0.0000))
-    (uuid 4d392596-2d52-40ee-a754-4932d977a2ab)
-    (property "Sheetname" "Display" (at 16.51 31.0384 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheetfile" "Display.kicad_sch" (at 16.51 69.1646 0)
-      (effects (font (size 1.27 1.27)) (justify left top))
-    )
-    (pin "DISPLAY{NCS,SDI,SCL,NRST,A0}" bidirectional (at 69.85 57.15 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid bf44260e-5069-4b17-bf9a-b04adab79d85)
-    )
-    (instances
-      (project "PCB_Project"
-        (path "/96782006-a72a-4cbb-9ab4-56557ee1053d" (page "2"))
-      )
-    )
-  )
-
-  (sheet (at 142.24 31.75) (size 50.8 36.83) (fields_autoplaced)
-    (stroke (width 0.1524) (type solid))
-    (fill (color 0 0 0 0.0000))
-    (uuid 621cc19e-9e31-4813-b9c6-f9f4f3066f42)
-    (property "Sheetname" "Sensors + Motor" (at 142.24 31.0384 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheetfile" "Sensors.kicad_sch" (at 142.24 69.1646 0)
-      (effects (font (size 1.27 1.27)) (justify left top))
-    )
-    (pin "Ultrasonic{Trigg,Echo}" bidirectional (at 142.24 45.72 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid df49e6ae-ace1-4e5d-88ef-d05d5150d619)
-    )
-    (pin "LDR" output (at 142.24 48.26 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 7df0d811-7d01-4891-8ea7-ce322e961fb4)
-    )
-    (pin "Driver{MS1,MS2,STEP,DIR}" input (at 142.24 50.8 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 4c6a2d72-bffd-4188-b1ce-50eb2fafab0c)
-    )
-    (pin "SG90_PWM" input (at 142.24 40.64 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid bc25cb80-e771-49fa-9fd5-7b2126a6d13d)
-    )
-    (pin "Ind_3v3" output (at 142.24 43.18 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid ce4fd7c8-a381-44b4-976d-7fdd6946b067)
-    )
-    (instances
-      (project "PCB_Project"
-        (path "/96782006-a72a-4cbb-9ab4-56557ee1053d" (page "3"))
-      )
-    )
-  )
-
-  (sheet_instances
-    (path "/" (page "1"))
-  )
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "96782006-a72a-4cbb-9ab4-56557ee1053d")
+	(paper "A5")
+	(lib_symbols)
+	(bus
+		(pts
+			(xy 69.85 57.15) (xy 82.55 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "411728f1-7358-4f4a-aefc-9c1d3d9022cd")
+	)
+	(bus
+		(pts
+			(xy 123.19 45.72) (xy 142.24 45.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "61c25c5f-ec78-42da-b5f6-0d412a4358af")
+	)
+	(wire
+		(pts
+			(xy 123.19 48.26) (xy 142.24 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aca28f96-c084-40f7-9642-1936af4c01a6")
+	)
+	(wire
+		(pts
+			(xy 123.19 43.18) (xy 142.24 43.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b3519ac7-52fb-4d46-aef4-ed25bd5290d9")
+	)
+	(wire
+		(pts
+			(xy 123.19 40.64) (xy 142.24 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e1b6bc3b-a27d-4674-b58d-b0a5c7a5753d")
+	)
+	(bus
+		(pts
+			(xy 123.19 50.8) (xy 142.24 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fd22d354-50d2-4234-9e76-1290bae90b5f")
+	)
+	(sheet
+		(at 82.55 31.75)
+		(size 40.64 36.83)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "0419be2b-5ee6-4a8c-8789-c753ffca51aa")
+		(property "Sheetname" "MCU"
+			(at 82.55 31.0384 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "MCU.kicad_sch"
+			(at 82.55 69.1646 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "DISPLAY{NCS,SDI,SCL,NRST,A0}" bidirectional
+			(at 82.55 57.15 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "babe5f7e-1d44-4fa1-b7c0-643ad3245ef8")
+		)
+		(pin "Ultrasonic{Trigg,Echo}" bidirectional
+			(at 123.19 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "68709c61-0936-4d48-b152-a94793d51232")
+		)
+		(pin "Driver{MS1,MS2,STEP,DIR}" output
+			(at 123.19 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "fc4192a0-23d7-4f2b-9aed-b3b5287bfe96")
+		)
+		(pin "LDR" input
+			(at 123.19 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "6ff41656-0b41-48b2-9dec-d5f98d45dd4a")
+		)
+		(pin "SG90_PWM" output
+			(at 123.19 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "4d5eb3dc-519a-4662-8f16-2c4252c2526b")
+		)
+		(pin "Ind_3v3" input
+			(at 123.19 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "262ca5ae-8aa3-4e11-b89d-772d9460e88f")
+		)
+		(instances
+			(project "PCB_Project"
+				(path "/96782006-a72a-4cbb-9ab4-56557ee1053d"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 16.51 31.75)
+		(size 53.34 36.83)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "4d392596-2d52-40ee-a754-4932d977a2ab")
+		(property "Sheetname" "Display"
+			(at 16.51 31.0384 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Display.kicad_sch"
+			(at 16.51 69.1646 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "DISPLAY{NCS,SDI,SCL,NRST,A0}" bidirectional
+			(at 69.85 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "bf44260e-5069-4b17-bf9a-b04adab79d85")
+		)
+		(instances
+			(project "PCB_Project"
+				(path "/96782006-a72a-4cbb-9ab4-56557ee1053d"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 142.24 31.75)
+		(size 50.8 36.83)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "621cc19e-9e31-4813-b9c6-f9f4f3066f42")
+		(property "Sheetname" "Sensors + Motor"
+			(at 142.24 31.0384 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Sensors.kicad_sch"
+			(at 142.24 69.1646 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "Ultrasonic{Trigg,Echo}" bidirectional
+			(at 142.24 45.72 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "df49e6ae-ace1-4e5d-88ef-d05d5150d619")
+		)
+		(pin "LDR" output
+			(at 142.24 48.26 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "7df0d811-7d01-4891-8ea7-ce322e961fb4")
+		)
+		(pin "Driver{MS1,MS2,STEP,DIR}" input
+			(at 142.24 50.8 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "4c6a2d72-bffd-4188-b1ce-50eb2fafab0c")
+		)
+		(pin "SG90_PWM" input
+			(at 142.24 40.64 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "bc25cb80-e771-49fa-9fd5-7b2126a6d13d")
+		)
+		(pin "Ind_3v3" output
+			(at 142.24 43.18 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "ce4fd7c8-a381-44b4-976d-7fdd6946b067")
+		)
+		(instances
+			(project "PCB_Project"
+				(path "/96782006-a72a-4cbb-9ab4-56557ee1053d"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
 )

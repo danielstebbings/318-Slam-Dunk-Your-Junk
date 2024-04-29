@@ -852,8 +852,20 @@
 			)
 		)
 	)
+	(no_connect
+		(at 109.22 92.71)
+		(uuid "bec5a347-00f9-4399-b962-f23513ce80eb")
+	)
+	(no_connect
+		(at 182.88 105.41)
+		(uuid "c4e6319c-7f42-465f-8778-efb0d2c762d2")
+	)
+	(no_connect
+		(at 109.22 100.33)
+		(uuid "fd103c01-43a8-4269-8260-189ba107ffca")
+	)
 	(bus_entry
-		(at 46.99 67.31)
+		(at 46.99 62.23)
 		(size 2.54 2.54)
 		(stroke
 			(width 0)
@@ -862,7 +874,7 @@
 		(uuid "265a1beb-a182-458f-987a-74864b267cf3")
 	)
 	(bus_entry
-		(at 46.99 64.77)
+		(at 46.99 59.69)
 		(size 2.54 2.54)
 		(stroke
 			(width 0)
@@ -878,15 +890,6 @@
 			(type default)
 		)
 		(uuid "364b9b32-1fae-41bc-a98d-af6ab15dc013")
-	)
-	(bus_entry
-		(at 46.99 59.69)
-		(size 2.54 2.54)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "41f226a1-7c42-443f-91af-bd150e909cd2")
 	)
 	(bus_entry
 		(at 46.99 31.75)
@@ -941,15 +944,6 @@
 			(type default)
 		)
 		(uuid "d89e1be2-7559-4e3c-9d39-226d6c8381a2")
-	)
-	(bus_entry
-		(at 46.99 62.23)
-		(size 2.54 2.54)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dac1fb8c-7453-409d-af00-caf126c42f4e")
 	)
 	(wire
 		(pts
@@ -1013,7 +1007,7 @@
 	)
 	(bus
 		(pts
-			(xy 46.99 59.69) (xy 46.99 62.23)
+			(xy 46.99 58.42) (xy 46.99 59.69)
 		)
 		(stroke
 			(width 0)
@@ -1030,16 +1024,6 @@
 			(type default)
 		)
 		(uuid "2ee4e8d4-1ff1-4215-bfd9-4cde526f3514")
-	)
-	(bus
-		(pts
-			(xy 46.99 62.23) (xy 46.99 64.77)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "30aa9159-c706-44e5-9db8-93f78e17ed85")
 	)
 	(wire
 		(pts
@@ -1060,16 +1044,6 @@
 			(type default)
 		)
 		(uuid "36c2ec20-e0ed-4c1e-bc15-8cbd5632a0d5")
-	)
-	(bus
-		(pts
-			(xy 46.99 67.31) (xy 46.99 71.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3d0c313a-ada1-488b-8504-e649c4b51f26")
 	)
 	(wire
 		(pts
@@ -1163,17 +1137,7 @@
 	)
 	(bus
 		(pts
-			(xy 46.99 58.42) (xy 46.99 59.69)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "85223dfc-d538-4939-a1c9-f896f8551f6c")
-	)
-	(bus
-		(pts
-			(xy 46.99 64.77) (xy 46.99 67.31)
+			(xy 46.99 59.69) (xy 46.99 62.23)
 		)
 		(stroke
 			(width 0)
@@ -1364,17 +1328,6 @@
 		)
 		(uuid "017604dc-43e2-4956-8780-04324312cbc2")
 	)
-	(label "Driver.MS2"
-		(at 49.53 64.77 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "03e9f27d-f81b-4aa4-b349-3600003205e5")
-	)
 	(label "P8.0{slash}A8"
 		(at 121.92 95.25 0)
 		(fields_autoplaced yes)
@@ -1419,17 +1372,6 @@
 		)
 		(uuid "244462cd-4849-4d65-88ba-f7196628d47a")
 	)
-	(label "Driver.MS2"
-		(at 109.22 100.33 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "2561271b-37c3-4346-afea-96b3ade4ae73")
-	)
 	(label "DISPLAY.NCS"
 		(at 49.53 31.75 0)
 		(fields_autoplaced yes)
@@ -1453,7 +1395,7 @@
 		(uuid "2caea729-fdd0-4b34-9fb4-b96d9728ea32")
 	)
 	(label "Driver.STEP"
-		(at 49.53 67.31 0)
+		(at 49.53 62.23 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1475,7 +1417,7 @@
 		(uuid "3da9ad5a-e315-4c0a-be7a-e8192322ac24")
 	)
 	(label "Driver.DIR"
-		(at 49.53 69.85 0)
+		(at 49.53 64.77 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1528,17 +1470,6 @@
 			(justify left bottom)
 		)
 		(uuid "55e43296-76f9-4669-8818-c297e23f9f94")
-	)
-	(label "Driver.MS1"
-		(at 49.53 62.23 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "5b5601ce-3b22-45df-bb95-bc2c91a7b741")
 	)
 	(label "P1.1{slash}RXD"
 		(at 121.92 87.63 0)
@@ -1826,17 +1757,6 @@
 		)
 		(uuid "eed2c2ca-d2c2-4d8c-a25a-79b25cf0197c")
 	)
-	(label "Driver.MS1"
-		(at 109.22 92.71 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "f26e6af9-d59e-43a7-b4cf-74cea72efc4a")
-	)
 	(label "P1.0{slash}TXD"
 		(at 121.92 90.17 0)
 		(fields_autoplaced yes)
@@ -1872,7 +1792,7 @@
 		)
 		(uuid "2f978320-7fd2-4ee2-bb1d-ec1651f53602")
 	)
-	(hierarchical_label "Driver{MS1,MS2,STEP,DIR}"
+	(hierarchical_label "Driver{STEP,DIR}"
 		(shape output)
 		(at 45.72 58.42 180)
 		(fields_autoplaced yes)

@@ -115,16 +115,6 @@
 			)
 			(uuid "68709c61-0936-4d48-b152-a94793d51232")
 		)
-		(pin "Driver{MS1,MS2,STEP,DIR}" output
-			(at 123.19 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-			(uuid "fc4192a0-23d7-4f2b-9aed-b3b5287bfe96")
-		)
 		(pin "LDR" input
 			(at 123.19 48.26 0)
 			(effects
@@ -154,6 +144,16 @@
 				(justify right)
 			)
 			(uuid "262ca5ae-8aa3-4e11-b89d-772d9460e88f")
+		)
+		(pin "Driver{STEP,DIR}" output
+			(at 123.19 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "d142900f-c943-42e8-8eb0-367f260ce617")
 		)
 		(instances
 			(project "PCB_Project"
@@ -261,16 +261,6 @@
 			)
 			(uuid "7df0d811-7d01-4891-8ea7-ce322e961fb4")
 		)
-		(pin "Driver{MS1,MS2,STEP,DIR}" input
-			(at 142.24 50.8 180)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-			(uuid "4c6a2d72-bffd-4188-b1ce-50eb2fafab0c")
-		)
 		(pin "SG90_PWM" input
 			(at 142.24 40.64 180)
 			(effects
@@ -290,6 +280,16 @@
 				(justify left)
 			)
 			(uuid "ce4fd7c8-a381-44b4-976d-7fdd6946b067")
+		)
+		(pin "Driver{STEP,DIR}" input
+			(at 142.24 50.8 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "66e9ac33-4594-43bf-8d80-04d12b396c05")
 		)
 		(instances
 			(project "PCB_Project"

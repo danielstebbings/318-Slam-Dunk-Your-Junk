@@ -1,8 +1,7 @@
 * source INDUCTIVE_TRANSISTOR
 Q_Q1         N00217 N00240 N00213 QbreakN 
 V_V1         N00244 0  
-+PULSE 10V 0V 100ms 1ms 1ms 250ms 1s
-V_V2         N00233 0 3.3Vdc
++PULSE 10V 0V 100us 1us 1us 250ms 1s
+V_V2         N00217 0 3.3Vdc
 R_R1         N00244 N00240  100k TC=0,0 
-R_R2         N00217 N00233  10k TC=0,0 
 R_R3         0 N00213  10k TC=0,0 

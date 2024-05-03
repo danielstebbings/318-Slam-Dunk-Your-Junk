@@ -1,0 +1,1 @@
+{"TimeStamp":"Thu May  2 01:25:40 2024\n","Circuits":{"ExitCode":"0","TraceCount":"18","Mode":"SPICE","Type":"TIFullMode","Models":[{"ModelName":"QbreakN","FileName":"c:\\cadence\\pspiceti\\tools\\pspice\\library\\breakout.lib","ModelType":".model","DeviceType":"q","Source":"FROM_INC","isLibSigned":"true","isAllowed":"true"}]}}

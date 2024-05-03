@@ -8,20 +8,15 @@
 #include "mp6500_driver.h"
 
 
-void init_timers(Step_Count){ //sets up timer
+void step_init_timers(const int Step_Count){ //sets up timer
     //Stop both counters
     Timer_A_stop(TIMER_A0_BASE); // step count timer
     Timer_A_stop(TIMER_A1_BASE); // PWM timer
 
 
     Timer_A_initUpModeParam step_counter_params = {0};
-#ifdef DEBUG
-    step_counter_params.clockSource = TIMER_A_CLOCKSOURCE_ACLK; // 32kHz
-    step_counter_params.clockSourceDivider = TIMER_A_CLOCKSOURCE_DIVIDER_64; // 32k/64 = 500Hz
-#else
-    step_counter_params.clockSource = TIMER_A_CLOCKSOURCE_SMCLK;
-    step_counter_params.clockSourceDivider = TIMER_A_CLOCKSOURCE_DIVIDER_2; //1M/2 = 500kHz
-#endif
+        step_counter_params.clockSource = TIMER_A_CLOCKSOURCE_ACLK; // 32kHz
+        step_counter_params.clockSourceDivider = TIMER_A_CLOCKSOURCE_DIVIDER_64; // 32k/64 = 500Hz
         step_counter_params.timerPeriod = (Step_Count+1) * STEPPER_PWM_PERIOD; //0->65k
         step_counter_params.timerInterruptEnable_TAIE = TIMER_A_TAIE_INTERRUPT_DISABLE;
         step_counter_params.captureCompareInterruptEnable_CCR0_CCIE = TIMER_A_CCIE_CCR0_INTERRUPT_ENABLE;
@@ -43,7 +38,7 @@ void init_timers(Step_Count){ //sets up timer
      Timer_A_outputPWM(TIMER_A1_BASE, &pwm_params);
 };
 
-void init_pins() {
+void step_init_pins() {
     //DIR output:
     GPIO_setAsOutputPin(GPIO_PORT_P4, GPIO_PIN2);
     //STEP output
@@ -56,7 +51,7 @@ void init_pins() {
 }
 
 
-int move_pos(current_pos,new_pos) {
+int step_move_pos(current_pos,new_pos) {
     int steps_to_move = 0;
 
     if(current_pos == new_pos) {

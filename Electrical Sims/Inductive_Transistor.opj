@@ -1,6 +1,6 @@
 (ExpressProject "Inductive_Transistor"
   (ProjectVersion "19981106")
-  (SoftwareVersion "17.4-2023 S009-[02/24/24]")
+  (SoftwareVersion "23.1-2024 S001-[05/02/24]")
   (ProjectType "Analog or A/D Mixed Mode")
   (Folder "Design Resources"
     (Folder "Library")
@@ -19,10 +19,14 @@
       (Type "Report")))
   (Folder "PSpice Resources"
     (Folder "Simulation Profiles"
-      (ActiveProfile ".\inductive_transistor-pspicefiles\schematic1\step.sim")
       (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
          ".\inductive_transistor-pspicefiles\schematic1\step.sim"
         (DisplayName "SCHEMATIC1-Step")
+        (Type "PSpice Profile"))
+      (ActiveProfile ".\inductive_transistor-pspicefiles\schematic1\vsweep.sim")
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\inductive_transistor-pspicefiles\schematic1\vsweep.sim"
+        (DisplayName "SCHEMATIC1-vsweep")
         (Type "PSpice Profile")))
     (Folder "Model Libraries"
       (Sort User))
@@ -65,13 +69,13 @@
     (Doc
       (Type "COrCapturePMDoc")
       (Frame
-        (Placement "44 0 1 -1 -1 -1 -1 0 200 0 447"))
+        (Placement "44 0 1 -1 -1 -1 -1 0 200 0 443"))
       (Tab 0))
     (Doc
       (Type "COrSchematicDoc")
       (Frame
-        (Placement "44 0 1 -1 -1 -1 -1 5 706 24 488")
-        (Scroll "0 344")
+        (Placement "44 0 1 -1 -1 -1 -1 5 714 24 461")
+        (Scroll "11 264")
         (Zoom "204")
         (Occurrence "/"))
       (Path

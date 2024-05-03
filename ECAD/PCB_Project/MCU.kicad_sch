@@ -4,6 +4,13 @@
 	(generator_version "8.0")
 	(uuid "dec48d80-6a21-4803-ba6f-52353a227876")
 	(paper "A4")
+	(title_block
+		(title "EE318 - Slam Dunk Your Junk")
+		(date "2024-05-01")
+		(rev "V1")
+		(company "Group 9")
+		(comment 1 "Manufactured Design")
+	)
 	(lib_symbols
 		(symbol "Connector_Generic:Conn_01x02"
 			(pin_names
@@ -865,7 +872,7 @@
 		(uuid "fd103c01-43a8-4269-8260-189ba107ffca")
 	)
 	(bus_entry
-		(at 46.99 62.23)
+		(at 74.93 101.6)
 		(size 2.54 2.54)
 		(stroke
 			(width 0)
@@ -874,7 +881,7 @@
 		(uuid "265a1beb-a182-458f-987a-74864b267cf3")
 	)
 	(bus_entry
-		(at 46.99 59.69)
+		(at 74.93 99.06)
 		(size 2.54 2.54)
 		(stroke
 			(width 0)
@@ -883,7 +890,7 @@
 		(uuid "2c3850d5-4179-4a8b-bdc1-d0a1df61fa66")
 	)
 	(bus_entry
-		(at 46.99 36.83)
+		(at 74.93 76.2)
 		(size 2.54 2.54)
 		(stroke
 			(width 0)
@@ -892,7 +899,7 @@
 		(uuid "364b9b32-1fae-41bc-a98d-af6ab15dc013")
 	)
 	(bus_entry
-		(at 46.99 31.75)
+		(at 74.93 71.12)
 		(size 2.54 2.54)
 		(stroke
 			(width 0)
@@ -901,7 +908,7 @@
 		(uuid "53691314-de9a-4fe3-93ef-25a007a416ad")
 	)
 	(bus_entry
-		(at 46.99 39.37)
+		(at 74.93 78.74)
 		(size 2.54 2.54)
 		(stroke
 			(width 0)
@@ -910,7 +917,7 @@
 		(uuid "796d921c-c2a9-44d9-af45-ace28afc5c2a")
 	)
 	(bus_entry
-		(at 46.99 29.21)
+		(at 74.93 68.58)
 		(size 2.54 2.54)
 		(stroke
 			(width 0)
@@ -919,7 +926,7 @@
 		(uuid "7cf5ffc0-f878-4e52-9bba-bf35216b4712")
 	)
 	(bus_entry
-		(at 46.99 48.26)
+		(at 74.93 87.63)
 		(size 2.54 2.54)
 		(stroke
 			(width 0)
@@ -928,7 +935,7 @@
 		(uuid "9496c295-6f26-4959-9474-dae4835f3247")
 	)
 	(bus_entry
-		(at 46.99 34.29)
+		(at 74.93 73.66)
 		(size 2.54 2.54)
 		(stroke
 			(width 0)
@@ -937,7 +944,7 @@
 		(uuid "a5703fb5-debb-4ad5-9fd9-58edd70dee58")
 	)
 	(bus_entry
-		(at 46.99 50.8)
+		(at 74.93 90.17)
 		(size 2.54 2.54)
 		(stroke
 			(width 0)
@@ -957,7 +964,7 @@
 	)
 	(wire
 		(pts
-			(xy 44.45 76.2) (xy 49.53 76.2)
+			(xy 72.39 115.57) (xy 77.47 115.57)
 		)
 		(stroke
 			(width 0)
@@ -977,7 +984,7 @@
 	)
 	(bus
 		(pts
-			(xy 46.99 46.99) (xy 46.99 48.26)
+			(xy 74.93 86.36) (xy 74.93 87.63)
 		)
 		(stroke
 			(width 0)
@@ -997,7 +1004,7 @@
 	)
 	(bus
 		(pts
-			(xy 46.99 36.83) (xy 46.99 39.37)
+			(xy 74.93 76.2) (xy 74.93 78.74)
 		)
 		(stroke
 			(width 0)
@@ -1007,7 +1014,7 @@
 	)
 	(bus
 		(pts
-			(xy 46.99 58.42) (xy 46.99 59.69)
+			(xy 74.93 97.79) (xy 74.93 99.06)
 		)
 		(stroke
 			(width 0)
@@ -1037,7 +1044,7 @@
 	)
 	(wire
 		(pts
-			(xy 44.45 83.82) (xy 49.53 83.82)
+			(xy 72.39 123.19) (xy 77.47 123.19)
 		)
 		(stroke
 			(width 0)
@@ -1077,7 +1084,7 @@
 	)
 	(bus
 		(pts
-			(xy 45.72 46.99) (xy 46.99 46.99)
+			(xy 73.66 86.36) (xy 74.93 86.36)
 		)
 		(stroke
 			(width 0)
@@ -1127,7 +1134,7 @@
 	)
 	(bus
 		(pts
-			(xy 46.99 34.29) (xy 46.99 36.83)
+			(xy 74.93 73.66) (xy 74.93 76.2)
 		)
 		(stroke
 			(width 0)
@@ -1137,7 +1144,7 @@
 	)
 	(bus
 		(pts
-			(xy 46.99 59.69) (xy 46.99 62.23)
+			(xy 74.93 99.06) (xy 74.93 101.6)
 		)
 		(stroke
 			(width 0)
@@ -1157,7 +1164,7 @@
 	)
 	(bus
 		(pts
-			(xy 45.72 26.67) (xy 46.99 26.67)
+			(xy 73.66 66.04) (xy 74.93 66.04)
 		)
 		(stroke
 			(width 0)
@@ -1167,7 +1174,7 @@
 	)
 	(bus
 		(pts
-			(xy 46.99 26.67) (xy 46.99 29.21)
+			(xy 74.93 66.04) (xy 74.93 68.58)
 		)
 		(stroke
 			(width 0)
@@ -1197,7 +1204,7 @@
 	)
 	(bus
 		(pts
-			(xy 45.72 58.42) (xy 46.99 58.42)
+			(xy 73.66 97.79) (xy 74.93 97.79)
 		)
 		(stroke
 			(width 0)
@@ -1207,7 +1214,7 @@
 	)
 	(wire
 		(pts
-			(xy 44.45 80.01) (xy 49.53 80.01)
+			(xy 72.39 119.38) (xy 77.47 119.38)
 		)
 		(stroke
 			(width 0)
@@ -1227,7 +1234,7 @@
 	)
 	(bus
 		(pts
-			(xy 46.99 48.26) (xy 46.99 50.8)
+			(xy 74.93 87.63) (xy 74.93 90.17)
 		)
 		(stroke
 			(width 0)
@@ -1237,7 +1244,7 @@
 	)
 	(bus
 		(pts
-			(xy 46.99 29.21) (xy 46.99 31.75)
+			(xy 74.93 68.58) (xy 74.93 71.12)
 		)
 		(stroke
 			(width 0)
@@ -1257,7 +1264,7 @@
 	)
 	(bus
 		(pts
-			(xy 46.99 31.75) (xy 46.99 34.29)
+			(xy 74.93 71.12) (xy 74.93 73.66)
 		)
 		(stroke
 			(width 0)
@@ -1276,8 +1283,8 @@
 		(uuid "f9f25226-af11-450a-8620-7e42a71a122f")
 	)
 	(rectangle
-		(start 12.7 17.78)
-		(end 76.2 95.25)
+		(start 40.64 57.15)
+		(end 104.14 134.62)
 		(stroke
 			(width 0)
 			(type default)
@@ -1289,7 +1296,7 @@
 	)
 	(text_box "Offsheet connections"
 		(exclude_from_sim no)
-		(at 13.97 19.05 0)
+		(at 41.91 58.42 0)
 		(size 24.13 3.81)
 		(stroke
 			(width 0)
@@ -1373,7 +1380,7 @@
 		(uuid "244462cd-4849-4d65-88ba-f7196628d47a")
 	)
 	(label "DISPLAY.NCS"
-		(at 49.53 31.75 0)
+		(at 77.47 71.12 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1395,7 +1402,7 @@
 		(uuid "2caea729-fdd0-4b34-9fb4-b96d9728ea32")
 	)
 	(label "Driver.STEP"
-		(at 49.53 62.23 0)
+		(at 77.47 101.6 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1406,7 +1413,7 @@
 		(uuid "37c898fc-161c-4e49-88bf-1ffb223b6eed")
 	)
 	(label "DISPLAY.SDI"
-		(at 49.53 34.29 0)
+		(at 77.47 73.66 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1417,7 +1424,7 @@
 		(uuid "3da9ad5a-e315-4c0a-be7a-e8192322ac24")
 	)
 	(label "Driver.DIR"
-		(at 49.53 64.77 0)
+		(at 77.47 104.14 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1461,7 +1468,7 @@
 		(uuid "557a28f6-3ae1-4ebe-ab69-eb8381009ee0")
 	)
 	(label "DISPLAY.NRST"
-		(at 49.53 39.37 0)
+		(at 77.47 78.74 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1483,7 +1490,7 @@
 		(uuid "5c21417d-b711-40f3-b0ae-62d0cf922740")
 	)
 	(label "Ultrasonic.Trigg"
-		(at 49.53 50.8 0)
+		(at 77.47 90.17 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1527,7 +1534,7 @@
 		(uuid "7dadd171-3db3-4bd1-93e8-30e7e7d92722")
 	)
 	(label "Ind_Analog"
-		(at 49.53 80.01 0)
+		(at 77.47 119.38 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1549,7 +1556,7 @@
 		(uuid "85b96b9d-02c2-4cdd-aee4-be0f96f44c71")
 	)
 	(label "LDR_Analog"
-		(at 49.53 76.2 0)
+		(at 77.47 115.57 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1615,7 +1622,7 @@
 		(uuid "b223624c-dde4-40fe-80ce-505cfb519be5")
 	)
 	(label "DISPLAY.SCL"
-		(at 49.53 36.83 0)
+		(at 77.47 76.2 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1659,7 +1666,7 @@
 		(uuid "bf3beb0c-6766-4d41-9d7d-42ee8261ddb4")
 	)
 	(label "SG90_PWM"
-		(at 49.53 83.82 0)
+		(at 77.47 123.19 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1681,7 +1688,7 @@
 		(uuid "c1c48acd-cbeb-404b-9b40-479cf6183a02")
 	)
 	(label "Ultrasonic.Echo"
-		(at 49.53 53.34 0)
+		(at 77.47 92.71 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1725,7 +1732,7 @@
 		(uuid "e46ca32a-7849-432f-ad39-cb99410eea8a")
 	)
 	(label "DISPLAY.A0"
-		(at 49.53 41.91 0)
+		(at 77.47 81.28 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1770,7 +1777,7 @@
 	)
 	(hierarchical_label "Ultrasonic{Trigg,Echo}"
 		(shape bidirectional)
-		(at 45.72 46.99 180)
+		(at 73.66 86.36 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1782,7 +1789,7 @@
 	)
 	(hierarchical_label "DISPLAY{NCS,SDI,SCL,NRST,A0}"
 		(shape bidirectional)
-		(at 45.72 26.67 180)
+		(at 73.66 66.04 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1794,7 +1801,7 @@
 	)
 	(hierarchical_label "Driver{STEP,DIR}"
 		(shape output)
-		(at 45.72 58.42 180)
+		(at 73.66 97.79 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1806,7 +1813,7 @@
 	)
 	(hierarchical_label "Ind_3v3"
 		(shape input)
-		(at 44.45 80.01 180)
+		(at 72.39 119.38 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1818,7 +1825,7 @@
 	)
 	(hierarchical_label "LDR"
 		(shape input)
-		(at 44.45 76.2 180)
+		(at 72.39 115.57 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1830,7 +1837,7 @@
 	)
 	(hierarchical_label "SG90_PWM"
 		(shape output)
-		(at 44.45 83.82 180)
+		(at 72.39 123.19 180)
 		(fields_autoplaced yes)
 		(effects
 			(font

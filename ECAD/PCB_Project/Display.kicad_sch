@@ -4,6 +4,13 @@
 	(generator_version "8.0")
 	(uuid "1cac2501-f0d2-4439-8bb7-bc48a01bfa20")
 	(paper "A5")
+	(title_block
+		(title "EE318 - Slam Dunk Your Junk")
+		(date "2024-05-01")
+		(rev "V1")
+		(company "Group 9")
+		(comment 1 "Manufactured Design")
+	)
 	(lib_symbols
 		(symbol "318_Part_Library:EA_DOGL128-6"
 			(exclude_from_sim no)

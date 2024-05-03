@@ -16,11 +16,9 @@
 #define STEPPER_PWM_PERIOD 50;
 #endif
 
-
-
-
-void init_motor(); //sets up timer
-int move_pos(int current_pos, int new_pos); //returns either new_pos or an error.
+void step_init_pins(); //sets up pins for PWM output
+void step_init_timers(const int Step_Count); //initialises timers
+bool move_pos(int current_pos, int new_pos); //returns either new_pos or an error.
 
 bool calibrate(); //Manual calibration
 

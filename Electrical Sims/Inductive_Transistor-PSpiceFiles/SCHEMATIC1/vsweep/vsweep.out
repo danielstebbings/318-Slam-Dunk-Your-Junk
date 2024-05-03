@@ -1,0 +1,129 @@
+
+**** 05/02/24 01:25:40 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-vsweep"  [ C:\Users\Daniel\Documents\Github\318-Slam-Dunk-Your-Junk\Electrical Sims\Inductive_Transistor-PSp
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "vsweep.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+* From [PSPICE NETLIST] section of C:\cds_spb_home\cdssetup\OrCAD_PSpiceTIPSpice_Install\23.1.0\PSpice.ini file:
+.lib "nom_pspti.lib" 
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 1ms 0 
+.OPTIONS ADVCONV
+.OPTIONS FILEMODELSEARCH
+.PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
+.INC "..\SCHEMATIC1.net" 
+
+
+
+**** INCLUDING SCHEMATIC1.net ****
+* source INDUCTIVE_TRANSISTOR
+Q_Q1         N00217 N00240 N00213 QbreakN 
+V_V1         N00244 0  
++PULSE 10V 0V 100us 1us 1us 250ms 1s
+V_V2         N00217 0 3.3Vdc
+R_R1         N00244 N00240  100k TC=0,0 
+R_R3         0 N00213  10k TC=0,0 
+
+**** RESUMING vsweep.cir ****
+.END
+
+**** 05/02/24 01:25:40 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-vsweep"  [ C:\Users\Daniel\Documents\Github\318-Slam-Dunk-Your-Junk\Electrical Sims\Inductive_Transistor-PSp
+
+
+ ****     BJT MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               QbreakN         
+               NPN             
+       LEVEL    1            
+          IS  100.000000E-18 
+          BF  100            
+          NF    1            
+          BR    1            
+          NR    1            
+         ISS    0            
+          RE    0            
+          RC    0            
+         CJE    0            
+         VJE     .75         
+         CJC    0            
+         VJC     .75         
+         MJC     .33         
+        XCJC    1            
+         CJS    0            
+         VJS     .75         
+          KF    0            
+          AF    1            
+          CN    2.42         
+           D     .87         
+
+
+**** 05/02/24 01:25:40 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-vsweep"  [ C:\Users\Daniel\Documents\Github\318-Slam-Dunk-Your-Junk\Electrical Sims\Inductive_Transistor-PSp
+
+
+ ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+(N00213)    3.2507 (N00217)    3.3000 (N00240)    3.9998 (N00244)   10.0000 
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V1        -6.000E-05
+    V_V2        -2.651E-04
+
+    TOTAL POWER DISSIPATION   1.47E-03  WATTS
+
+
+
+          JOB CONCLUDED
+
+**** 05/02/24 01:25:40 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-vsweep"  [ C:\Users\Daniel\Documents\Github\318-Slam-Dunk-Your-Junk\Electrical Sims\Inductive_Transistor-PSp
+
+
+ ****     JOB STATISTICS SUMMARY
+
+
+******************************************************************************
+
+
+
+  Total job time (using Solver 1)   =         .47
+

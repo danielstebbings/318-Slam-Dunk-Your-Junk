@@ -80,13 +80,11 @@ void main(void) {
 
 
 
-
-
-    //set up tm
-
-
-
-
+    GPIO_setAsPeripheralModuleFunctionOutputPin( //Primary function for 4.0 is TIMEA1.1 out
+            GPIO_PORT_P8,
+            GPIO_PIN3,
+            GPIO_PRIMARY_MODULE_FUNCTION
+            );
     GPIO_setAsPeripheralModuleFunctionOutputPin( //Primary function for 4.0 is TIMEA1.1 out
                 GPIO_PORT_P4,
                 GPIO_PIN0,

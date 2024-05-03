@@ -42,13 +42,15 @@ __interrupt void Timer_A (void) {
 
         Timer_A_stop(TIMER_A1_BASE); // Stop counter
         Timer_A_stop(TIMER_A0_BASE); // Stop PWM
+        /*
         int j = 0;
-        for (j = 0; j< 100; j++) {
+        for (j = 0; j< 10; j++) {
              __delay_cycles(65000);
              P4OUT ^= BIT0;
              __delay_cycles(65000);
              P1OUT ^= BIT0;
         };
+        */
         P4OUT &= !BIT0; //turn off
         P1OUT &= !BIT0; //turn off
         interrupt_flag = 1;
@@ -77,102 +79,66 @@ void main(void) {
     P1OUT  = 0x00;                          // P1.0 off
     P4DIR |= 0x01;                          // Set P4.0 to output direction
     P4OUT  = 0x00;                          // P4.0 off
-    //P4OUT ^= BIT0; //xor - toggle LED at P1.0
+
     //setup state machine
     test_state state = open;
     test_state next_state;
-    sg90_state servo_state = CLOSED;
-    //sg90_init_pins();
-    //printf("Init finished \n");
-    //Dummy loop to break out of
+    sg90_state servo_state;
 
     //setup P1.7 as timer A0 CCR1 output
     P1DIR  |= BIT7;
     P1SEL0 |= BIT7;
 
-    __delay_cycles(10);
+    //Sg90 interrupt flag
+    interrupt_flag = 0;
 
-    uint8_t angle = 60;
-    const uint16_t PWM_period = 1280; //gives 50Hz at 64kHz
-    const uint8_t PWM_1ms = 0; //64 clocks
-    const uint16_t timer_period_seconds = 5; //max 64!
-    const uint16_t timer_period_clks = timer_period_seconds*1000;
+    int k = 0;
+    for (k = 0; k< 10; k++) {
+       __delay_cycles(65000);
+       P1OUT ^= BIT0;
+       __delay_cycles(65000);
+       P1OUT ^= BIT0;
+     };
 
-    uint16_t duty = PWM_1ms + angle; //from 64-128 clocks.
-
-    //setup timers
-    Timer_A_outputPWMParam pwm_params = {
-                                         TIMER_A_CLOCKSOURCE_ACLK,          //64kHz source
-                                         TIMER_A_CLOCKSOURCE_DIVIDER_1,     //divider
-                                         PWM_period,                        //period of wave
-                                         TIMER_A_CAPTURECOMPARE_REGISTER_1, //register to store compare
-                                         TIMER_A_OUTPUTMODE_RESET_SET,      //PWM mode
-                                         duty};                             //duty cycle
-     Timer_A_initUpModeParam timer_params = {
-                                         TIMER_A_CLOCKSOURCE_ACLK,           //64kHz
-                                         TIMER_A_CLOCKSOURCE_DIVIDER_64,     //1kHz
-                                         timer_period_clks,                  //number to count to
-                                         TIMER_A_TAIE_INTERRUPT_DISABLE,     //Timer A Interrupt (triggers after it resets)
-                                         TIMER_A_CCIE_CCR0_INTERRUPT_ENABLE, //CCR0 interrupt (triggers on last)
-                                         TIMER_A_DO_CLEAR};                  //reset the timer before starting
-
-      //Timer_A_initUpMode(TIMER_A1_BASE,&timer_params); //configure timer
-      __delay_cycles(10);
-      //Start PWM and timer
-      Timer_A_outputPWM(TIMER_A0_BASE, &pwm_params);
-      //Timer_A_outputPWM(TIMER_A1_BASE, &pwm_params);
-      //Timer_A_startCounter(TIMER_A1_BASE, TIMER_A_UP_MODE);
-      int i =0;
-      for (i = 0; i < 10; i++) {
-      __delay_cycles(65000);
-      P4OUT ^= BIT0;
-      __delay_cycles(65000);
-      P4OUT ^= BIT0;
-      __delay_cycles(65000);
-      P4OUT ^= BIT0;
-      __delay_cycles(65000);
-      P4OUT ^= BIT0;
-      };
-      P4OUT &= !BIT0; //turn off
-      Timer_A_stop(TIMER_A1_BASE); // Stop counter
-      Timer_A_stop(TIMER_A0_BASE); // Stop PWM
-      sg90_init_timers(20);
-
-      for (i = 0; i < 10; i++) {
-            __delay_cycles(65000);
-            P4OUT ^= BIT0;
-            __delay_cycles(65000);
-            P4OUT ^= BIT0;
-            __delay_cycles(65000);
-            P4OUT ^= BIT0;
-            __delay_cycles(65000);
-            P4OUT ^= BIT0;
-            };
-      P4OUT &= !BIT0; //turn off
-      sg90_move(servo_state);
-      for (i = 0; i < 10; i++) {
-                  __delay_cycles(65000);
-                  P1OUT ^= BIT0;
-                  __delay_cycles(65000);
-                  P1OUT ^= BIT0;
-                  __delay_cycles(65000);
-                  P1OUT ^= BIT0;
-                  __delay_cycles(65000);
-                  P1OUT ^= BIT0;
-                  };
-      P1OUT &= !BIT0; //turn off
-      servo_state = OPEN;
-      sg90_move(servo_state);
-
+    sg90_move(CLOSED);
 
 
     //volatile uint16_t i;
     while (1) {
-        if (interrupt_flag) {
-                  P1OUT ^= BIT0; //xor - toggle LED at P1.0
-                  sg90_init_timers(125);
-              }
-    };
+        switch (state) {
+            case open:
+                //printf("open \n");
+                interrupt_flag = 0;
+                sg90_move(OPEN);
+                next_state = wait_open;
+                break;
+            case wait_open: //wait for interrupt
+
+                if (interrupt_flag ==1) {
+                    //printf("interrupt fired \n");
+                    next_state = close;
+                } else {
+                    //pass
+                };
+
+                break;
+            case close:
+                interrupt_flag = 0;
+                sg90_move(CLOSED);
+                next_state = wait_close;
+
+                break;
+            case wait_close:
+                if (interrupt_flag ==1) {
+                                next_state = open;
+                            } else {
+                                //pass
+                            };
+                break;
+            }; //end swiitch
+        state = next_state;
+
+     }; //end while
 
 
 } //end main

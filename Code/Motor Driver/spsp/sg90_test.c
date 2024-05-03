@@ -86,8 +86,8 @@ void main(void) {
     sg90_state servo_state;
 
     //setup P1.7 as timer A0 CCR1 output
-    P1DIR  |= BIT7;
-    P1SEL0 |= BIT7;
+    P1DIR  |= BIT6;
+    P1SEL0 |= BIT6;
 
     //Sg90 interrupt flag
     interrupt_flag = 0;

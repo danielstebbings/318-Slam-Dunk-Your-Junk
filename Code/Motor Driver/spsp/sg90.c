@@ -30,7 +30,7 @@ void sg90_init_timers(uint16_t angle) { //angle should be 0-64.
                                          TIMER_A_CLOCKSOURCE_SMCLK,         //1MHz source
                                          TIMER_A_CLOCKSOURCE_DIVIDER_1,     //divider
                                          PWM_period,                        //period of wave
-                                         TIMER_A_CAPTURECOMPARE_REGISTER_1, //register to store compare
+                                         TIMER_A_CAPTURECOMPARE_REGISTER_2, //register to store compare
                                          TIMER_A_OUTPUTMODE_RESET_SET,      //PWM mode
                                          duty};                             //duty cycle
         Timer_A_initUpModeParam timer_params = {

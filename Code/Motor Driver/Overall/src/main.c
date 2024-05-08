@@ -1,8 +1,12 @@
 #include <msp430.h>
+#include "driverlib/driverlib.h"
+
 #include <intrinsics.h>
 #include <stdio.h>
-#include <EA_DOG128.h>
+#include "EA_DOG128.h"
 #include <stdlib.h>
+
+#define MSP430FR4133
 
 #define XTAL   4 //Main screen 4Mhz
 #define delay_us(x) __delay_cycles ((unsigned long)(((unsigned long)x) * XTAL))
@@ -196,8 +200,8 @@ void main(void) //initialization
             if ((P1IN & BIT2) == 0) {//Start the game
                 current_target = 0xFF;//reset
                 detected_timer = 0;
-                target_flag    = 0;
-                sys_state      = 1;
+                target_flag = 0;
+                sys_state = 1;
                 srand(random_timer);
                 next_target = rand() % 3;//0,1,2 random number
                 game_running_timer = 0;

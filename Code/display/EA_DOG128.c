@@ -1,46 +1,45 @@
-#include <msp430.h>// Contains definitions for the MSP430 family of microcontrollers
-#include <intrinsics.h>// Includes built-in functions and features
+#include <msp430.h>
+#include <intrinsics.h>
 #include <stdio.h>
 #include <EA_DOG128.h>
 
-#define XTAL   4// Includes some built-in functions and features
-// Define a delay function that converts time into loop counts
+#define XTAL   4
 #define delay_us(x) __delay_cycles ((unsigned long)(((unsigned long)x) * XTAL))
 #define delay_ms(x) __delay_cycles ((unsigned long)(((unsigned long)x) * XTAL * 1000))
 #define delay_s(x)  __delay_cycles ((unsigned long)(((unsigned long)x) * XTAL * 1000000))
-// Define pins that control the LCD, including chip select, reset, data/command select, clock and data inputs
-//CSpin
+
+//CS引脚
 #define LCD_NCS_PORT_DIR        P1DIR
 #define LCD_NCS_PORT_OUT        P1OUT
 #define LCD_NCS_IO              BIT4
 #define LCD_NCS_HIGH            LCD_NCS_PORT_OUT |= LCD_NCS_IO;
 #define LCD_NCS_LOW             LCD_NCS_PORT_OUT &= ~LCD_NCS_IO;
-//RSTpin
+//RST引脚
 #define LCD_NRST_PORT_DIR       P1DIR
 #define LCD_NRST_PORT_OUT       P1OUT
 #define LCD_NRST_IO             BIT3
 #define LCD_NRST_HIGH           LCD_NRST_PORT_OUT |= LCD_NRST_IO;
 #define LCD_NRST_LOW            LCD_NRST_PORT_OUT &= ~LCD_NRST_IO;
-//A0pin
-#define LCD_A0_PORT_DIR         P1DIR
-#define LCD_A0_PORT_OUT         P1OUT
-#define LCD_A0_IO               BIT5
+//A0引脚
+#define LCD_A0_PORT_DIR         P5DIR
+#define LCD_A0_PORT_OUT         P5OUT
+#define LCD_A0_IO               BIT3
 #define LCD_A0_HIGH             LCD_A0_PORT_OUT |= LCD_A0_IO;
 #define LCD_A0_LOW              LCD_A0_PORT_OUT &= ~LCD_A0_IO;
-//SCLpin
+//SCL引脚
 #define LCD_SCL_PORT_DIR        P5DIR
 #define LCD_SCL_PORT_OUT        P5OUT
 #define LCD_SCL_IO              BIT1
 #define LCD_SCL_HIGH            LCD_SCL_PORT_OUT |= LCD_SCL_IO;
 #define LCD_SCL_LOW             LCD_SCL_PORT_OUT &= ~LCD_SCL_IO;
-//SDIpin
+//SDI引脚
 #define LCD_SDI_PORT_DIR        P5DIR
 #define LCD_SDI_PORT_OUT        P5OUT
 #define LCD_SDI_IO              BIT2
 #define LCD_SDI_HIGH            LCD_SDI_PORT_OUT |= LCD_SDI_IO;
 #define LCD_SDI_LOW             LCD_SDI_PORT_OUT &= ~LCD_SDI_IO;
 
-const unsigned char F8X16[] =   //character library
+const unsigned char F8X16[]=
 {
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,// 0
   0x00,0x00,0x00,0xF8,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x33,0x30,0x00,0x00,0x00,//! 1
@@ -139,19 +138,18 @@ const unsigned char F8X16[] =   //character library
   0x00,0x06,0x01,0x01,0x02,0x02,0x04,0x04,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,//~ 94
 };
 
-void EA_DOG128_Write_CMD(unsigned char cmd)//LCD Control Functions
+void EA_DOG128_Write_CMD(unsigned char cmd)
 {
     unsigned char i;
     LCD_NCS_LOW;
     LCD_A0_LOW;
     LCD_SCL_LOW;
 
-    for (i = 0; i < 8; i++) {
+    for(i = 0; i < 8; i++){
         LCD_SCL_LOW;
-        if (cmd & BIT7) {
+        if(cmd & BIT7){
             LCD_SDI_HIGH;
-        }
-        else {
+        }else{
             LCD_SDI_LOW;
         }
         LCD_SCL_HIGH;
@@ -161,19 +159,18 @@ void EA_DOG128_Write_CMD(unsigned char cmd)//LCD Control Functions
     LCD_A0_HIGH;
 }
 
-void EA_DOG128_Write_Dat(unsigned char dat)//LCD Control Functions
+void EA_DOG128_Write_Dat(unsigned char dat)
 {
     unsigned char i;
     LCD_NCS_LOW;
     LCD_A0_HIGH;
     LCD_SCL_LOW;
 
-    for (i = 0; i < 8; i++) {
+    for(i = 0; i < 8; i++){
         LCD_SCL_LOW;
-        if (dat & BIT7) {
+        if(dat & BIT7){
             LCD_SDI_HIGH;
-        }
-        else {
+        }else{
             LCD_SDI_LOW;
         }
         LCD_SCL_HIGH;
@@ -183,58 +180,58 @@ void EA_DOG128_Write_Dat(unsigned char dat)//LCD Control Functions
     LCD_A0_LOW;
 }
 
-void EA_DOG128_Clear(void)//clear the screen
+void EA_DOG128_Clear(void)
 {
     unsigned char i, j;
 
-    for (i = 0; i < 8; i++) {
+    for(i = 0; i < 8; i++){
         EA_DOG128_Write_CMD(0xB0 + i);
         EA_DOG128_Write_CMD(0x10);
         EA_DOG128_Write_CMD(0x00);
-        for (j = 0; j < 128; j++) {
+        for(j = 0; j < 128; j++){
             EA_DOG128_Write_Dat(0);
         }
     }
 }
 
-void EA_DOG128_Set_Addr(unsigned char x, unsigned char y) //Setting the display address
+void EA_DOG128_Set_Addr(unsigned char x, unsigned char y)
 {
     unsigned char i;
 
     i = x & 0x0F;
-    x = (x >> 4) + 0x10;
+    x = (x >>  4) + 0x10;
 
     EA_DOG128_Write_CMD(0xB0 + y);
     EA_DOG128_Write_CMD(x);
     EA_DOG128_Write_CMD(i);
 }
 
-void EA_DOG128_Disp_String(unsigned char x, unsigned char y, unsigned char* str)// Show String
+void EA_DOG128_Disp_String(unsigned char x, unsigned char y, unsigned char *str)
 {
     unsigned char c, i, j;
 
     c = i = j = 0;
 
-    while (str[j]) {
+    while(str[j]){
         c = str[j] - 32;
-        if (x > 127) {
+        if(x > 127){
             x -= 127;
             y++;
         }
-        EA_DOG128_Set_Addr(x, y * 2);
-        for (i = 0; i < 8; i++) {
-            EA_DOG128_Write_Dat(F8X16[c * 16 + i]);
+        EA_DOG128_Set_Addr(x, y*2);
+        for(i = 0; i < 8; i++){
+            EA_DOG128_Write_Dat(F8X16[c*16 + i]);
         }
-        EA_DOG128_Set_Addr(x, y * 2 + 1);
-        for (i = 0; i < 8; i++) {
-            EA_DOG128_Write_Dat(F8X16[c * 16 + i + 8]);
+        EA_DOG128_Set_Addr(x, y*2+1);
+        for(i = 0; i < 8; i++){
+            EA_DOG128_Write_Dat(F8X16[c*16 + i + 8]);
         }
         x += 8;
         j++;
     }
 }
 
-void EA_DOG128_Init(void)//Initialize LCD
+void EA_DOG128_Init(void)
 {
     LCD_NCS_HIGH;
     LCD_NCS_PORT_DIR |= LCD_NCS_IO;
@@ -252,13 +249,13 @@ void EA_DOG128_Init(void)//Initialize LCD
     EA_DOG128_Write_CMD(0xA3);//Bais set     1/9 bais
     EA_DOG128_Write_CMD(0xA0);//ADC select 0xa0 normal 0xA1 reverse
     EA_DOG128_Write_CMD(0xc8);//com output scan direction
-    /****Select internal resistor ratio****/
+/****Select internal resistor ratio****/
     EA_DOG128_Write_CMD(0x2c);
     EA_DOG128_Write_CMD(0x2e);
     EA_DOG128_Write_CMD(0x2F);
 
     EA_DOG128_Write_CMD(0x81);
-    EA_DOG128_Write_CMD(0x19);//0x00-0x3f
+    EA_DOG128_Write_CMD(0x25);//0x00-0x3f
     EA_DOG128_Write_CMD(0x24);//0x21-0x27
 
     EA_DOG128_Write_CMD(0xAF);//display lcd on

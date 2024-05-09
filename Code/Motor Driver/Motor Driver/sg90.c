@@ -55,7 +55,7 @@ void sg90_move(const enum sg90_state state) {
         return;
     }
     else if (state == OPEN) {
-        sg90_init_timers(2110);
+        sg90_init_timers(1490);
         return;
     } else {
         //ERROR

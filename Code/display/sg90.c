@@ -26,7 +26,7 @@ void sg90_init_timers(uint16_t angle) {
         //setup timers
         Timer_A_outputPWMParam pwm_params = {
                                          TIMER_A_CLOCKSOURCE_SMCLK,         //1MHz source
-                                         TIMER_A_CLOCKSOURCE_DIVIDER_1,     //divider
+                                         TIMER_A_CLOCKSOURCE_DIVIDER_4,     //divider
                                          PWM_period,                        //period of wave
                                          TIMER_A_CAPTURECOMPARE_REGISTER_2, //register to store compare
                                          TIMER_A_OUTPUTMODE_RESET_SET,      //PWM mode
@@ -50,11 +50,11 @@ void sg90_init_timers(uint16_t angle) {
 
 void sg90_move(const enum sg90_state state) {
     if (state == CLOSED) {
-        sg90_init_timers(910);
+        sg90_init_timers(2090);
         return;
     }
     else if (state == OPEN) {
-        sg90_init_timers(2110);
+        sg90_init_timers(1610);
         return;
     } else {
         //ERROR

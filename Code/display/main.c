@@ -9,13 +9,14 @@
 //motor livs
 #include "sg90.h"
 #include "mp6500_driver.h"
+#include "driverlib/driverlib.h"
 
 #define XTAL   4
 #define delay_us(x) __delay_cycles ((unsigned long)(((unsigned long)x) * XTAL))
 #define delay_ms(x) __delay_cycles ((unsigned long)(((unsigned long)x) * XTAL * 1000))
 #define delay_s(x)  __delay_cycles ((unsigned long)(((unsigned long)x) * XTAL * 1000000))
 
-#define LIGHT_THRES     500
+#define LIGHT_THRES     600
 
 unsigned char random_timer = 0;
 unsigned long game_running_timer = 0;
@@ -32,9 +33,20 @@ unsigned long detected_timer = 0;
 unsigned int ad_val = 0;
 unsigned int lowest_ad_val = 0xFFFF;
 
-//interrupt flags
+
 volatile char sg90_interrupt_flag = 0;
 volatile char stepper_interrupt_flag = 0;
+
+// TYPES
+typedef enum test_state {
+    open,
+    wait_open,
+    close,
+    wait_close
+} test_state;
+
+
+//functions
 void Disp_Refresh(void)
 {
     unsigned long temp = 0;
@@ -57,10 +69,71 @@ void Disp_Refresh(void)
     }
 }
 
+//Timer Interrupt service routines
+
+#pragma vector = TIMER1_A0_VECTOR
+__interrupt void Timer_A (void) {
+
+        Timer_A_stop(TIMER_A1_BASE); // Stop counter
+        Timer_A_stop(TIMER_A0_BASE); // Stop PWM
+
+        int j = 0;
+        for (j = 0; j< 10; j++) {
+             __delay_cycles(65000);
+             P4OUT ^= BIT0;
+             __delay_cycles(65000);
+             P1OUT ^= BIT0;
+        };
+
+
+        P4OUT &= ~BIT0; //turn off
+        P1OUT &= ~BIT0; //turn off
+        sg90_interrupt_flag = 1;
+
+        Timer_A_clearTimerInterrupt(TIMER_A0_BASE);
+
+        return;
+    };
+
+/* Initialize non-used ISR vectors with a trap function */
+
+#pragma vector=PORT2_VECTOR
+#pragma vector=PORT1_VECTOR
+//#pragma vector=TIMER1_A1_VECTOR
+//#pragma vector=TIMER1_A0_VECTOR
+//#pragma vector=TIMER0_A1_VECTOR
+//#pragma vector=TIMER0_A0_VECTOR
+//#pragma vector=ADC10_VECTOR
+//#pragma vector=USCIAB0TX_VECTOR
+#pragma vector=WDT_VECTOR
+//#pragma vector=USCIAB0RX_VECTOR
+//#pragma vector=NMI_VECTOR
+//#pragma vector=COMPARATORA_VECTOR
+
+__interrupt void ISR_trap(void)
+{
+    /*
+    int j = 0;
+            for (j = 0; j< 10; j++) {
+                 __delay_cycles(65000);
+                 P4OUT ^= BIT0;
+                 __delay_cycles(65000);
+                 P4OUT ^= BIT0;
+            };
+            */
+    return;
+}
+
+int _system_pre_init(void)
+{
+    WDTCTL = WDTPW | WDTHOLD;
+    return 1;
+};
+
 void main(void)
 {
 
-    WDTCTL = WDTPW | WDTHOLD;   // stop watchdog timer
+    //WDTCTL = WDTPW | WDTHOLD;   // stop watchdog timer
 
     P4SEL0 |= BIT1 | BIT2;                  // set XT1 pin as second function
 
@@ -99,6 +172,14 @@ void main(void)
     P5DIR &= ~BIT0;//Echo
     P8DIR &= ~BIT0; //Inductive sensor input
 
+    //DEBUG LED SETUP
+    P1DIR |= 0x01;                          // Set P1.0 to output direction
+    //P1OUT  = 0x00;                          // P1.0 off
+    P4DIR |= 0x01;                          // Set P4.0 to output direction
+    //P4OUT  = 0x00;                          // P4.0 off
+
+    //interrupts
+    __enable_interrupt();
     sg90_init_pins();
 
     // Configure ADC A1 pin
@@ -118,18 +199,75 @@ void main(void)
     PMMCTL2 |= INTREFEN;                                      // Enable internal reference
     __delay_cycles(400);                                      // Delay for reference settling
 
-    sg90_move(CLOSED);
-    delay_ms(3000);
-    EA_DOG128_Init();
-    //EA_DOG128_Disp_String(0, 0, " Welcome to use ");
-    //EA_DOG128_Disp_String(0, 1, "  Shoot Games   ");
-      EA_DOG128_Disp_String(0, 0, "   SLAM DUNK!   ");
-      EA_DOG128_Disp_String(0, 1, "   YOUR JUNK!   ");
-      EA_DOG128_Disp_String(0, 2, " Score:0000     ");
-      EA_DOG128_Disp_String(0, 3, "  S1->>Playing  ");
 
-    //sg90_move(CLOSED);
-    //delay_s(3);
+    // motor test loop
+    test_state state = open;
+    test_state next_state;
+    int finish = 0;
+    int j = 0;
+    // sg90_init_pins();
+      while (1) {
+          switch (state) {
+                      case open:
+                          //printf("open \n");
+                          sg90_interrupt_flag = 0;
+                          sg90_move(OPEN);
+                          next_state = wait_open;
+                          break;
+                      case wait_open: //wait for interrupt
+
+                          if (sg90_interrupt_flag ==1) {
+                              //printf("interrupt fired \n");
+
+                                          for (j = 0; j< 10; j++) {
+                                               __delay_cycles(65000);
+                                               P1OUT ^= BIT0;
+                                               __delay_cycles(65000);
+                                               P4OUT ^= BIT0;
+                                          };
+                              next_state = close;
+                          } else {
+                              //pass
+                          };
+
+                          break;
+                      case close:
+                          sg90_interrupt_flag = 0;
+                          sg90_move(CLOSED);
+                          next_state = wait_close;
+
+                          break;
+                      case wait_close:
+                          if (sg90_interrupt_flag ==1) {
+                                          next_state = open;
+                                          finish++;
+                                          for (j = 0; j< 10; j++) {
+                                                                                         __delay_cycles(65000);
+                                                                                         P1OUT ^= BIT0;
+                                                                                         __delay_cycles(65000);
+                                                                                         P4OUT ^= BIT0;
+                                                                                    };
+                                      } else {
+                                          //pass
+                                      };
+                          break;
+                      }; //end swiitch
+                  state = next_state;
+
+
+
+          if (finish == 2) { //button two to break
+              break;
+          }
+      };
+
+      EA_DOG128_Init();
+      //EA_DOG128_Disp_String(0, 0, " Welcome to use ");
+      //EA_DOG128_Disp_String(0, 1, "  Shoot Games   ");
+        EA_DOG128_Disp_String(0, 0, "   SLAM DUNK!   ");
+        EA_DOG128_Disp_String(0, 1, "   YOUR JUNK!   ");
+        EA_DOG128_Disp_String(0, 2, " Score:0000     ");
+        EA_DOG128_Disp_String(0, 3, "  S1->>Playing  ");
     while(1){
         delay_ms(1);
         random_timer++;
@@ -169,7 +307,7 @@ void main(void)
                         if(ultrasonic_timer > 60000)break; //stop forever loop
                     }
                     if(ultrasonic_timer < 70){//Adapt trigger point based on tube diameter.
-                        lowest_ad_val = 0xFFFF;
+                        //lowest_ad_val = 0xFFFF;
 
                         target_flag = 0;
                         do{
@@ -187,44 +325,44 @@ void main(void)
 
                         if(target_flag & BIT0){
                             sg90_move(OPEN);
+                            //Wdelay_ms(3000);
                             int j = 0;
-                                    for (j = 0; j< 10; j++) {
+                                    for (j = 0; j< 5; j++) {
                                          __delay_cycles(65000);
-                                         P1OUT ^= BIT0;
+                                         P4OUT ^= BIT0;
                                          __delay_cycles(65000);
                                          P4OUT ^= BIT0;
                                     };
+
                                     sg90_move(CLOSED);
+                                    //delay_ms(3000);
                             current_target = 0; //metal
                         }else{
-                            sg90_move(OPEN);
-                            int j = 0;
-                                                                for (j = 0; j< 10; j++) {
-                                                                     __delay_cycles(65000);
-                                                                     P1OUT ^= BIT0;
-                                                                     __delay_cycles(65000);
-                                                                     P4OUT ^= BIT0;
-                                                                };
-                                                                sg90_move(CLOSED);
+
                             if(lowest_ad_val > LIGHT_THRES){
                                 sg90_move(OPEN);
+                                //delay_ms(3000);
                                 int j = 0;
-                                                                    for (j = 0; j< 10; j++) {
+                                                                    for (j = 0; j< 5; j++) {
                                                                          __delay_cycles(65000);
                                                                          P1OUT ^= BIT0;
                                                                          __delay_cycles(65000);
                                                                          P1OUT ^= BIT0;
                                                                     };
+                                                                    sg90_move(CLOSED);
                                 current_target = 1;//clear plastic
                             }else{
                                 sg90_move(OPEN);
+                                //delay_ms(3000);
                                 int j = 0;
-                                for (j = 0; j< 10; j++) {
+                                for (j = 0; j< 5; j++) {
                                                                          __delay_cycles(65000);
-                                                                         P4OUT ^= BIT0;
+                                                                         P1OUT ^= BIT0;
                                                                          __delay_cycles(65000);
                                                                          P4OUT ^= BIT0;
                                                                     };
+                                sg90_move(CLOSED);
+                                //delay_ms(3000);
                                 current_target = 2;//opaque plastic
                             }
                         }
@@ -307,31 +445,7 @@ void __attribute__ ((interrupt(ADC_VECTOR))) ADC_ISR (void)
     }
 }
 
-//Timer Interrupt service routines
 
-#pragma vector = TIMER0_A0_VECTOR
-__interrupt void Timer_A0 (void) {
-
-        Timer_A_stop(TIMER_A1_BASE); // Stop counter
-        Timer_A_stop(TIMER_A0_BASE); // Stop PWM
-
-        int j = 0;
-        for (j = 0; j< 10; j++) {
-             __delay_cycles(65000);
-             P4OUT ^= BIT0;
-             __delay_cycles(65000);
-             P1OUT ^= BIT0;
-        };
-
-
-        P4OUT &= ~BIT0; //turn off
-        P1OUT &= ~BIT0; //turn off
-        sg90_interrupt_flag = 1;
-
-        Timer_A_clearTimerInterrupt(TIMER_A0_BASE);
-
-        return;
-    };
 
 /*
 

@@ -22,7 +22,8 @@ void sg90_init_timers(uint16_t angle) {
     const uint16_t timer_period_clks = 500;
 
     uint16_t duty = PWM_min + angle;
-
+    Timer_A_stop(TIMER_A1_BASE); // Stop counter
+    Timer_A_stop(TIMER_A0_BASE); // Stop PWM
         //setup timers
         Timer_A_outputPWMParam pwm_params = {
                                          TIMER_A_CLOCKSOURCE_SMCLK,         //1MHz source

@@ -264,7 +264,7 @@ void EA_DOG128_Init(void)
     EA_DOG128_Disp_String(0, 0, " Welcome to use ");
     EA_DOG128_Disp_String(0, 1, "   Shoot Games  ");
     EA_DOG128_Disp_String(0, 2, "PlayMode:Regular");
-    EA_DOG128_Disp_String(0, 3, "Scores:0000     ");
+    EA_DOG128_Disp_String(0, 3, " Score:0000T    ");
 }
 
 

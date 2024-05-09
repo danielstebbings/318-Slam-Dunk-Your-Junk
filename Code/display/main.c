@@ -11,22 +11,23 @@
 #include "mp6500_driver.h"
 #include "driverlib/driverlib.h"
 
-#define XTAL   4
+#define XTAL   4  //Main screen 4Mhz
 #define delay_us(x) __delay_cycles ((unsigned long)(((unsigned long)x) * XTAL))
 #define delay_ms(x) __delay_cycles ((unsigned long)(((unsigned long)x) * XTAL * 1000))
 #define delay_s(x)  __delay_cycles ((unsigned long)(((unsigned long)x) * XTAL * 1000000))
 
-#define LIGHT_THRES     600
+#define LIGHT_THRES     600  //Set the illuminance preset value, take the middle value of illuminance under transparent and non-transparent
+
 
 unsigned char random_timer = 0;
-unsigned long game_running_timer = 0;
+unsigned long game_running_timer = 0; 
 unsigned int round_timer = 0;
 unsigned char sys_state = 0;//0 is the game end status, showing the last score, 1 is the game in progress
-unsigned char next_target = 0;//0 is metal, 1 is non-metal, 2 is non-recyclable
+unsigned char next_target = 0;//0 is metal, 1 is clear plastic, 2 is opaque plastic
 unsigned int current_score = 0;
 unsigned char disp_buff[17] = " Score:0000T    ";
 unsigned int ultrasonic_timer = 0;
-unsigned char current_target = 0xFF;//0xFF means no object, 0 means metal, 1 means plastic, and 2 means non-plastic.
+unsigned char current_target = 0xFF;//0xFF means no object, 0 means metal, 1 means clear plastic, and 2 means opaque plastic
 unsigned char target_flag = 0;//BIT0 indicates metal objects, BIT2 indicates whether it is transparent or not
 unsigned int time_cnt = 0;
 unsigned long detected_timer = 0;
@@ -49,18 +50,18 @@ typedef enum test_state {
 //functions
 void Disp_Refresh(void)
 {
-    unsigned long temp = 0;
+    unsigned long temp = 0;//initialization
 
-    disp_buff[7] = current_score/1000+'0';
+    disp_buff[7] = current_score/1000+'0';//current score refresh
     disp_buff[8] = current_score%1000/100+'0';
     disp_buff[9] = current_score%100/10+'0';
     disp_buff[10] = current_score%10+'0';
     temp = (100000-game_running_timer)/1000;
-    disp_buff[12] = temp/100+'0';
+    disp_buff[12] = temp/100+'0';  //dislpay time last
     disp_buff[13] = temp%100/10+'0';
     disp_buff[14] = temp%10+'0';
     EA_DOG128_Disp_String(0, 2, disp_buff);
-    if(next_target == 0){
+    if(next_target == 0){       //Display the next trash type to be requested
         EA_DOG128_Disp_String(63, 3, "Metal    ");
     }else if(next_target == 1){
         EA_DOG128_Disp_String(63, 3, "CPlastic");
@@ -126,7 +127,7 @@ __interrupt void ISR_trap(void)
 
 int _system_pre_init(void)
 {
-    WDTCTL = WDTPW | WDTHOLD;
+    WDTCTL = WDTPW | WDTHOLD;  // stop watchdog timer
     return 1;
 };
 
@@ -159,12 +160,12 @@ void main(void)
     CSCTL5 |= DIVM_0 | DIVS_0;              // MCLK = DCOCLK = 4MHZ,
                                             // SMCLK = MCLK/1 = 4MHz
 
-    P4OUT &= ~BIT0;
+    P4OUT &= ~BIT0;//Port initialization
     P4DIR |= BIT0;
-    P1DIR &= ~BIT2;//按键S1，开始键
+    P1DIR &= ~BIT2;//Key S1, Start
     P1REN |= BIT2;
     P1OUT |= BIT2;
-    P2DIR &= ~BIT6;//按键S2，
+    P2DIR &= ~BIT6;//Key S2
     P2REN |= BIT6;
     P2OUT |= BIT6;
     P1OUT &= ~BIT7;
@@ -261,7 +262,7 @@ void main(void)
           }
       };
 
-      EA_DOG128_Init();
+      EA_DOG128_Init();  //Screen initialization display
       //EA_DOG128_Disp_String(0, 0, " Welcome to use ");
       //EA_DOG128_Disp_String(0, 1, "  Shoot Games   ");
         EA_DOG128_Disp_String(0, 0, "   SLAM DUNK!   ");
@@ -269,12 +270,12 @@ void main(void)
         EA_DOG128_Disp_String(0, 2, " Score:0000     ");
         EA_DOG128_Disp_String(0, 3, "  S1->>Playing  ");
     while(1){
-        delay_ms(1);
-        random_timer++;
+        delay_ms(1); //Detection every 1ms
+        random_timer++; //random number
 
         if(sys_state){//The game is in progress
             game_running_timer++;
-            round_timer++;
+            round_timer++; //10s a turn, refresh type
             if(game_running_timer > 100000){//The game ends in 100 seconds
                 sys_state = 0;
                 EA_DOG128_Disp_String(0, 3, "Congratulations!");
@@ -286,7 +287,7 @@ void main(void)
                     next_target = rand() % 3;
                     Disp_Refresh();
                 }
-                if((round_timer % 1000) == 0){
+                if((round_timer % 1000) == 0){//Countdown refreshes every second
                     Disp_Refresh();
                 }
             }
@@ -309,7 +310,7 @@ void main(void)
                     if(ultrasonic_timer < 70){//Adapt trigger point based on tube diameter.
                         //lowest_ad_val = 0xFFFF;
 
-                        target_flag = 0;
+                        target_flag = 0;//Detecting light
                         do{
                             time_cnt++;
                             if((P8IN & BIT0) == 0){ //inductive sensor is active low -> metal
@@ -320,7 +321,7 @@ void main(void)
                             if(ad_val < lowest_ad_val){ //update lowest ADC value?
                                 lowest_ad_val = ad_val;
                             }
-                        }while(time_cnt < 500);
+                        }while(time_cnt < 500);//Takes the smallest value (at darkest)
 
 
                         if(target_flag & BIT0){
@@ -339,7 +340,7 @@ void main(void)
                             current_target = 0; //metal
                         }else{
 
-                            if(lowest_ad_val > LIGHT_THRES){
+                            if(lowest_ad_val > LIGHT_THRES){ //Strong light, 1, transparent plastic; weak light, 2, opaque plastic
                                 sg90_move(OPEN);
                                 //delay_ms(3000);
                                 int j = 0;
@@ -366,7 +367,7 @@ void main(void)
                                 current_target = 2;//opaque plastic
                             }
                         }
-                        if(current_target == next_target){
+                        if(current_target == next_target){ //Current category = set target, +3 points; Current category not equal to set target, +1 point
                             current_score += 3;
                             next_target = rand() % 3;
                             round_timer = 0;
@@ -388,19 +389,19 @@ void main(void)
         if(((P1IN & BIT2) == 0)&&(sys_state == 0)){//Press the start button when the game is over
             delay_ms(10);
             if((P1IN & BIT2) == 0){//Start game
-                current_target = 0xFF;
+                current_target = 0xFF;//reset
                 detected_timer = 0;
                 target_flag = 0;
                 sys_state = 1;
                 srand(random_timer);
-                next_target = rand() & 1;
+                next_target = rand() & 1;//0,1,2 random number
                 game_running_timer = 0;
                 round_timer = 0;
                 current_score = 0;
-                EA_DOG128_Disp_String(0, 2, " Score:     100 ");
+                EA_DOG128_Disp_String(0, 2, " Score:     100 ");//refresh display
                 EA_DOG128_Disp_String(0, 3, " Target:         ");
                 Disp_Refresh();
-                while(1){
+                while(1){    //Wait for the button to release
                     if((P1IN & BIT2) != 0){
                         delay_ms(10);
                         if((P1IN & BIT2) != 0)break;
